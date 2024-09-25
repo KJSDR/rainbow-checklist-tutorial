@@ -23,6 +23,16 @@ def mark_completed(index):
     if index < len(checklist):
         checklist[index] = "√ " + checklist[index]
 
+
+
+    
+
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = input(prompt)
+    return user_input
+
 def select(function_code):
     # Create item
     if function_code == "C":
@@ -33,22 +43,16 @@ def select(function_code):
     elif function_code == "R":
         item_index = user_input("Index Number?")
 
-        # Remember that item_index must actually exist or our program will crash.
-        read(item_index)
-
-    # Print all items
     elif function_code == "P":
-        list_all_items()
+        items = list_all_items()
+        print("Checklist:", items)
 
-    # Catch all
+    elif function_code == "Q":
+        return False
     else:
         print("Unknown Option")
+    return True
 
-def user_input(prompt):
-    # the input function will display a message in the terminal
-    # and wait for user input.
-    user_input = input(prompt)
-    return user_input
 
 
 def test():
@@ -68,8 +72,15 @@ def test():
     list_all_items()
 
     select("R")
-    llist_all_items()
+    list_all_items()
 
 test()
+
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit")
+    running = select(selection)
+
 
 
